@@ -1,0 +1,22 @@
+name: build
+
+on:
+  push: {}
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    name: "Build on ${{ matrix.os }} with ${{ matrix.cxx }}"
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            cc: clang-18
+            cxx: clang++-18
+    
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
