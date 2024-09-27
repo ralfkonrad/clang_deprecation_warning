@@ -1,0 +1,22 @@
+---
+
+Language:        Cpp
+Standard:        c++17
+
+# # General appearance:
+
+BasedOnStyle: LLVM
+
+SortIncludes: true
+IncludeBlocks: Merge
+IncludeCategories:
+  - Regex:           '^"'
+    Priority:        1
+  - Regex:           '^<'
+    Priority:        2
+
+# Ensure single new line at the end of source files.
+InsertNewlineAtEOF: True
+KeepEmptyLinesAtEOF: False
+
+...

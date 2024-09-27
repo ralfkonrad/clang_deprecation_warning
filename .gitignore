@@ -1,5 +1,6 @@
 # personal settings
 CMakeUserPresets.json
+.vscode/
 build/
 
 # Created by https://www.toptal.com/developers/gitignore/api/c,c++,cmake,visualstudiocode,clion+all,clion,clion+iml
@@ -324,12 +325,12 @@ _deps
 *-prefix/
 
 ### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
+# .vscode/*
+# !.vscode/settings.json
+# !.vscode/tasks.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
+# !.vscode/*.code-snippets
 
 # Local History for Visual Studio Code
 .history/
