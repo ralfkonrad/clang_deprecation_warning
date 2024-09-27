@@ -47,5 +47,25 @@
       "configurePreset": "release",
       "inherits": "default"
     }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default",
+      "output": {
+        "verbosity": "extra",
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "debug",
+      "configurePreset": "debug",
+      "inherits": "default"
+    },
+    {
+      "name": "release",
+      "configurePreset": "release",
+      "inherits": "default"
+    }
   ]
 }

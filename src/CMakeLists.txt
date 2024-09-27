@@ -7,3 +7,6 @@ add_executable(clang_deprecation_warning
 target_include_directories(clang_deprecation_warning
     PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}")
+
+add_test(NAME clang_deprecation_warning
+         COMMAND clang_deprecation_warning)

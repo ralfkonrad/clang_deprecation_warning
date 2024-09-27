@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: "Build (${{ matrix.cxx }}, ${{ matrix.os }})"
+    name: "Build (${{ matrix.cxx }}, ${{ matrix.os }}, ${{ matrix.preset }})"
 
     strategy:
       fail-fast: false
@@ -39,7 +39,10 @@ jobs:
           - os: windows-2022
             cc: cl
             cxx: cl
-    
+        preset:
+          - release
+          - debug
+        
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -77,5 +80,9 @@ jobs:
           CC: ${{ matrix.cc }}
           CXX: ${{ matrix.cxx }}
         run: |
-          cmake --preset release -L
-          cmake --build --preset release -v -- -k0
+          cmake --preset ${{ matrix.preset }} -L
+          cmake --build --preset ${{ matrix.preset }} -v -- -k0
+
+      - name: Test
+        run: |
+          ctest --preset ${{ matrix.preset }}
