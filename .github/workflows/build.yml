@@ -6,17 +6,49 @@ on:
 
 jobs:
   build:
-    name: "Build on ${{ matrix.os }} with ${{ matrix.cxx }}"
+    name: "Build (${{ matrix.cxx }}, ${{ matrix.os }})"
 
     strategy:
       fail-fast: false
       matrix:
         include:
           - os: ubuntu-24.04
+            cc: clang-16
+            cxx: clang++-16
+
+          - os: ubuntu-24.04
+            cc: clang-17
+            cxx: clang++-17
+
+          - os: ubuntu-24.04
             cc: clang-18
             cxx: clang++-18
+
+          - os: ubuntu-24.04
+            cc: gcc-12
+            cxx: g++-12
+
+          - os: ubuntu-24.04
+            cc: gcc-13
+            cxx: g++-13
+
+          - os: ubuntu-24.04
+            cc: gcc-14
+            cxx: g++-14
     
     runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Compiler version
+        run: |
+          ${{ matrix.cc }} --version
+      
+      - name: Build
+        env:
+          CC: ${{ matrix.cc }}
+          CXX: ${{ matrix.cxx }}
+        run: |
+          cmake --preset release -L
+          cmake --build --preset release -v -- -k0
