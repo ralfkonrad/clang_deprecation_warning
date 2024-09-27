@@ -11,6 +11,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        preset:
+          - release
+          - debug
         include:
           - os: ubuntu-24.04
             cc: clang-18
@@ -39,9 +42,6 @@ jobs:
           - os: windows-2022
             cc: cl
             cxx: cl
-        preset:
-          - release
-          - debug
         
     runs-on: ${{ matrix.os }}
 
