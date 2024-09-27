@@ -13,28 +13,32 @@ jobs:
       matrix:
         include:
           - os: ubuntu-24.04
-            cc: clang-16
-            cxx: clang++-16
+            cc: clang-18
+            cxx: clang++-18
 
           - os: ubuntu-24.04
             cc: clang-17
             cxx: clang++-17
 
           - os: ubuntu-24.04
-            cc: clang-18
-            cxx: clang++-18
+            cc: clang-16
+            cxx: clang++-16
 
           - os: ubuntu-24.04
-            cc: gcc-12
-            cxx: g++-12
+            cc: gcc-14
+            cxx: g++-14
 
           - os: ubuntu-24.04
             cc: gcc-13
             cxx: g++-13
 
           - os: ubuntu-24.04
-            cc: gcc-14
-            cxx: g++-14
+            cc: gcc-12
+            cxx: g++-12
+    
+          - os: windows-2022
+            cc: cl
+            cxx: cl
     
     runs-on: ${{ matrix.os }}
 
@@ -43,11 +47,21 @@ jobs:
 
       - name: Setup Linux
         if: runner.os == 'Linux'
-        shell: bash
         run: |
           sudo apt-get update
           sudo apt-get install -y ninja-build
 
+      - name: Setup Windows
+        if: runner.os == 'Windows'
+        run: |
+          choco install -y ninja
+
+      - name: Set up Visual Studio shell on Windows
+        uses: TheMrMilchmann/setup-msvc-dev@v3
+        if: runner.os == 'Windows'
+        with:
+          arch: x64
+           
       - name: Compiler version
         run: |
           ${{ matrix.cc }} --version
