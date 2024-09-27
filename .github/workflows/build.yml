@@ -54,7 +54,7 @@ jobs:
         with:
           arch: x64
            
-      - name: Compiler version (Linux)
+      - name: Compiler version (Windows)
         if: runner.os == 'Windows'
         run: |
           ${{ matrix.settings.cc }}
